@@ -1,6 +1,5 @@
 package com.rs.game.player.actions.combat.weaponscript;
 
-import com.rs.cache.loaders.ItemDefinitions;
 import com.rs.game.Animation;
 import com.rs.game.World;
 import com.rs.game.player.Player;
@@ -21,27 +20,20 @@ public class MagicShortbow extends WeaponScript {
 	}
 
 	@Override
-	public int getType() {
-		return RANGE;
+	public CombatType getType() {
+		return CombatType.RANGE;
 	}
+
+	private final int[] validAmmo = { 882, 884, 886, 888, 890, 892 };
 
 	@Override
 	public boolean isValidAmmo(int ammoId) {
-		String name = ItemDefinitions.getItemDefinitions(ammoId).getName().toLowerCase();
-		return name.contains(" arrow") && !name.contains("dragon");
-	}
-
-	// SOMEONE OF THESE 2, idk which best
-
-	@Override
-	public int[] getAmmo() {
-		return new int[] { 882, // bronze arrow
-				884, // iron arrow
-				886, // steel arrow
-				888, // mithril arrow
-				890, // adamant arrow
-				892 // rune arrow
-		};
+		for (int ids : validAmmo) {
+			if (ids == ammoId) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int getAttackSpeed() {

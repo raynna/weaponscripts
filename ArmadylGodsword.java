@@ -18,11 +18,10 @@ public class ArmadylGodsword extends WeaponScript {
 		return new Object[] { 11694 };
 	}
 
-	
-	//NOTE: Melee weapons load attackspeed from cache
+	// NOTE: Melee weapons load attackspeed from cache
 	@Override
-	public int getType() {
-		return MELEE;
+	public CombatType getType() {
+		return CombatType.MELEE;
 	}
 
 	@Override
